@@ -9,8 +9,10 @@ public class Disparo : MonoBehaviour
 
     private float timebtwnShots;
     public float Cadenciadedisparo;
-    public float speed;
-    
+    public float speed; 
+    public AudioSource audioSource;
+    public AudioClip shootingClip;
+
     public void Update()
     {
         if (timebtwnShots <= 0)
@@ -18,8 +20,10 @@ public class Disparo : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 GameObject newBullet = Instantiate(projectile, shotPoint.position, transform.rotation);
+                audioSource.PlayOneShot(shootingClip);
                 newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * speed; 
                 timebtwnShots = Cadenciadedisparo;
+
             }
         }else 
         {

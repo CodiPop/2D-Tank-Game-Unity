@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     void Start()
     {
         spawnAllowed = true;
-        InvokeRepeating("spawnaTurret", 0f, 1f);
+        InvokeRepeating("spawnaTurret", 0f, 0.5f);
     }
 
     // Update is called once per frame
