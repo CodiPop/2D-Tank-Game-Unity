@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Turrets : MonoBehaviour
 {
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,7 @@ public class Turrets : MonoBehaviour
         {
             
             Destroy(col.gameObject);
-
+            
             Destroy(gameObject);
         }
     }

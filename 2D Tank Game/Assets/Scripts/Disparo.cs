@@ -11,7 +11,7 @@ public class Disparo : MonoBehaviour
     public float Cadenciadedisparo;
     public float speed; 
     public AudioSource audioSource;
-    public AudioClip shootingClip;
+    public AudioClip shootingClip, reloadClip;
 
     public void Update()
     {
@@ -23,6 +23,7 @@ public class Disparo : MonoBehaviour
                 audioSource.PlayOneShot(shootingClip);
                 newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * speed; 
                 timebtwnShots = Cadenciadedisparo;
+                audioSource.PlayOneShot(reloadClip);
 
             }
         }else 
@@ -32,4 +33,7 @@ public class Disparo : MonoBehaviour
         }
         
     }
+
 }
+
+

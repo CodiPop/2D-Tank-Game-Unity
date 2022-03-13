@@ -11,6 +11,18 @@ public class Projectile : MonoBehaviour
     {
         Invoke("Destroyprojectile", lifetime);
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.GetComponent<Turrets>() != null)
+        {
+
+
+
+            Destroy(gameObject);
+        }
+    }
+
     void Destroyprojectile()
     {
         Destroy(gameObject);
