@@ -4,18 +4,9 @@ using UnityEngine;
 
 public class Turrets : MonoBehaviour
 {
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+    public int stop = 0;
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -23,9 +14,13 @@ public class Turrets : MonoBehaviour
         {
             
             Destroy(col.gameObject);
-            
+            stop += 1;
             Destroy(gameObject);
         }
+
+
     }
+
+
 
 }
