@@ -6,30 +6,24 @@ public class boss : MonoBehaviour
 {
     public Timer other;
 
-    public int stop = 100;
+    int stop = 100;
 
-    public void Update()
-    {
-        if (stop >= 3)
-        {
-            print("Entre al if");
-            other.StopWatchStop();
-        }
-    }
+
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.GetComponent<Projectile>() != null)
         {
 
-            
+            print(stop);
             stop = stop - 15;
-            
+            print(stop);
+
             print("mate");
-            
+            Destroy(col.gameObject);
             if (stop <= 0)
             {
-                print("entre al if");
+                print("entre al if 123");
                 Destroy(gameObject);
                 Destroy(col.gameObject);
                 other.StopWatchStop();
