@@ -6,7 +6,7 @@ public class Turrets : MonoBehaviour
 {
     
 
-    public int stop = 0;
+    
 
  
 
@@ -16,7 +16,6 @@ public class Turrets : MonoBehaviour
         {
             
             Destroy(col.gameObject);
-            stop = stop + 1;
             print("mate");
             Destroy(gameObject);
         }
