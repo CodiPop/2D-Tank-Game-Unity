@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Turrets : MonoBehaviour
 {
-
+    
 
     public int stop = 0;
+
+ 
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -14,11 +16,12 @@ public class Turrets : MonoBehaviour
         {
             
             Destroy(col.gameObject);
-            stop += 1;
+            stop = stop + 1;
+            print("mate");
             Destroy(gameObject);
         }
 
-
+        
     }
 
 

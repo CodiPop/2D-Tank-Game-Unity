@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public GameObject Turrets;
+    
     public Text timer;
     public float time;
     float msec, sec, min;
@@ -14,11 +14,13 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         StartCoroutine("StopWatch");
+        
     }
 
     public void StopWatchStop()
     {
         StopCoroutine("StopWatch");
+        
     }
 
     IEnumerator StopWatch()
