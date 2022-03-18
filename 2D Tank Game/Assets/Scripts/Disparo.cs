@@ -17,7 +17,7 @@ public class Disparo : MonoBehaviour
     {
         if (timebtwnShots <= 0)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space))
             {
                 GameObject newBullet = Instantiate(projectile, shotPoint.position, transform.rotation);
                 audioSource.PlayOneShot(shootingClip);
