@@ -25,11 +25,13 @@ public class Turrets : MonoBehaviour
 
     void Update()
     {
-
-        Tower.transform.Rotate(new Vector3(0.0f,0.0f,5.0f));
-        if (Vector3.Distance(Enemy.transform.position,Self.transform.position) <= 1.0f)
+        if (Tower != null)
         {
-           
+            Tower.transform.Rotate(new Vector3(0.0f, 0.0f, 0.3f));
+            if (Vector3.Distance(Enemy.transform.position, Self.transform.position) <= 1.0f)
+            {
+                Fire();
+            }
         }
     }
 
@@ -45,6 +47,11 @@ public class Turrets : MonoBehaviour
         }
 
         
+    }
+
+    void Fire()
+    {
+
     }
 
 
