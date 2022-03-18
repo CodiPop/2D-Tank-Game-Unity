@@ -8,6 +8,8 @@ public class Turrets : MonoBehaviour
     private GameObject Tower;
     private Turrets Self;
     private GameObject Enemy;
+    private Disparo Gun;
+
     void Start()
     {
         Enemy = GameObject.FindGameObjectsWithTag("Player")[0];
@@ -20,7 +22,12 @@ public class Turrets : MonoBehaviour
                 Tower = tower;
             }
         }
-        print(Tower);
+        if(Tower != null)
+
+        {
+            Gun = GameObject.Find($"{Self.name}/{Tower.name}/Gun").GetComponent<Disparo>();
+            
+        }
     }
 
     void Update()
@@ -30,9 +37,11 @@ public class Turrets : MonoBehaviour
             Tower.transform.Rotate(new Vector3(0.0f, 0.0f, 0.3f));
             if (Vector3.Distance(Enemy.transform.position, Self.transform.position) <= 1.0f)
             {
-                Fire();
+               
             }
+            Fire();
         }
+
     }
 
 
@@ -41,9 +50,9 @@ public class Turrets : MonoBehaviour
         if(col.gameObject.GetComponent<Projectile>() != null)
         {
             
-            Destroy(col.gameObject);
-            print("mate");
-            Destroy(gameObject);
+            //Destroy(col.gameObject);
+            //print("mate");
+            //Destroy(gameObject);
         }
 
         
@@ -51,7 +60,12 @@ public class Turrets : MonoBehaviour
 
     void Fire()
     {
-
+        if(Gun != null)
+        {
+            print("Fire");
+            Gun.Fire();
+        }
+        
     }
 
 

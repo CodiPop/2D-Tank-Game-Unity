@@ -303,9 +303,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8909341574534709304}
   - component: {fileID: 8909341574534709311}
+  - component: {fileID: 798619571357840940}
   m_Layer: 0
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -377,6 +378,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &798619571357840940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8909341574534709305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad8f0e8aee0ef34fbfc1184e6d31996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 6594816160464256443, guid: 7dab84e0c29dd504a8fdafe32ae045fd, type: 3}
+  shotPoint: {fileID: 8909341573907752231}
+  Cadenciadedisparo: 1000
+  speed: 100
+  audioSource: {fileID: 0}
+  shootingClip: {fileID: 8300000, guid: a9646a6173bb6ad4b951ea60adaaa407, type: 3}
+  reloadClip: {fileID: 8300000, guid: 559959be6425d5e44964aac9ee060bee, type: 3}
+  isTurret: 1
 --- !u!1 &8909341574729770337
 GameObject:
   m_ObjectHideFlags: 0

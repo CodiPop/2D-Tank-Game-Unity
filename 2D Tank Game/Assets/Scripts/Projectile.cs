@@ -16,10 +16,7 @@ public class Projectile : MonoBehaviour
     {
         if (col.gameObject.GetComponent<Turrets>() != null)
         {
-
-
-
-            Destroy(gameObject);
+           Destroy(gameObject);
         }
     }
 

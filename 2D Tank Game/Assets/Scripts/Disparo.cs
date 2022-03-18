@@ -12,26 +12,48 @@ public class Disparo : MonoBehaviour
     public float speed; 
     public AudioSource audioSource;
     public AudioClip shootingClip, reloadClip;
+    public bool isTurret;
 
     public void Update()
     {
-        if (timebtwnShots <= 0)
+        if (!isTurret)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space))
+            if (timebtwnShots <= 0)
             {
-                GameObject newBullet = Instantiate(projectile, shotPoint.position, transform.rotation);
-                audioSource.PlayOneShot(shootingClip);
-                newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * speed; 
-                timebtwnShots = Cadenciadedisparo;
-                audioSource.PlayOneShot(reloadClip);
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space))
+                {
+
+                    Shoot();
+                }
+            }
+            else
+            {
+                timebtwnShots -= Time.deltaTime;
 
             }
-        }else 
+        }        
+    }
+
+    private void Shoot()
+    {
+        GameObject newBullet = Instantiate(projectile, shotPoint.position, transform.rotation);
+        //audioSource.PlayOneShot(shootingClip);
+        newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
+        timebtwnShots = Cadenciadedisparo;
+        //audioSource.PlayOneShot(reloadClip);
+    }
+
+    public void Fire()
+    {
+        if (timebtwnShots <= 0)
+        {
+                Shoot();   
+        }
+        else
         {
             timebtwnShots -= Time.deltaTime;
-                
+
         }
-        
     }
 
 }
