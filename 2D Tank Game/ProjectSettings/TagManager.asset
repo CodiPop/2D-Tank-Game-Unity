@@ -8,6 +8,8 @@ TagManager:
   - Bullet
   - turret
   - tower
+  - gun
+  - tagShotPointBoss
   layers:
   - Default
   - TransparentFX

@@ -5,32 +5,33 @@ using UnityEngine;
 public class boss : MonoBehaviour
 {
     public Timer other;
-
+    public GameObject WinText;
+    
     int stop = 100;
 
 
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.GetComponent<Projectile>() != null)
+        Projectile p = col.gameObject.GetComponent<Projectile>();
+        if ( p != null)
         {
-
-            print(stop);
-            stop = stop - 15;
-            print(stop);
-
-            print("mate");
-            Destroy(col.gameObject);
-            if (stop <= 0)
+            if (!p.getParent())
             {
-                print("entre al if 123");
-                Destroy(gameObject);
-                Destroy(col.gameObject);
-                other.StopWatchStop();
                 
+                stop -= 15;
+                print(stop);
+                Destroy(p);
+                if (stop <= 0)
+                {
+                    print(stop);
+                    Destroy(gameObject);
+                    Destroy(p);
+                    other.StopWatchStop();
+                }
             }
+      
         }
-
 
     }
 

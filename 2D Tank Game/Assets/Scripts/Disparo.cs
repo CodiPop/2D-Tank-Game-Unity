@@ -13,6 +13,7 @@ public class Disparo : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip shootingClip, reloadClip;
     public bool isTurret;
+    public bool isBoss;
 
     public void Update()
     {
@@ -22,8 +23,7 @@ public class Disparo : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space))
                 {
-
-                    Shoot();
+                    Shoot(false);
                 }
             }
             else
@@ -34,20 +34,29 @@ public class Disparo : MonoBehaviour
         }        
     }
 
-    private void Shoot()
+    private void Shoot(bool isParentTurret)
     {
         GameObject newBullet = Instantiate(projectile, shotPoint.position, transform.rotation);
-        //audioSource.PlayOneShot(shootingClip);
+        newBullet.GetComponent<Projectile>().setParent(isParentTurret);
+        if (!isParentTurret)
+        {
+            audioSource.PlayOneShot(shootingClip);
+        }
+
         newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
         timebtwnShots = Cadenciadedisparo;
-        //audioSource.PlayOneShot(reloadClip);
+        if (!isParentTurret)
+        {
+            audioSource.PlayOneShot(reloadClip);
+        }
+
     }
 
     public void Fire()
     {
         if (timebtwnShots <= 0)
         {
-                Shoot();   
+                Shoot(true);   
         }
         else
         {
@@ -56,6 +65,21 @@ public class Disparo : MonoBehaviour
         }
     }
 
+    public void FireBoss(bool isParentTurret, Transform[] shotPoints) {
+        if (timebtwnShots <= 0){
+            foreach (Transform shotPoint in shotPoints) {
+                GameObject newBullet = Instantiate(projectile, shotPoint.position, transform.rotation);
+                newBullet.GetComponent<Projectile>().setParent(isParentTurret);
+                //audioSource.PlayOneShot(shootingClip);
+                newBullet.GetComponent<Rigidbody2D>().velocity = transform.up* speed;
+                timebtwnShots = Cadenciadedisparo;
+                //audioSource.PlayOneShot(reloadClip);
+                }
+        } else { 
+            timebtwnShots -= Time.deltaTime;
+        }
+    }      
+    
 }
 
 
