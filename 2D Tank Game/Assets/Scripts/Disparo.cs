@@ -12,28 +12,74 @@ public class Disparo : MonoBehaviour
     public float speed; 
     public AudioSource audioSource;
     public AudioClip shootingClip, reloadClip;
+    public bool isTurret;
+    public bool isBoss;
 
     public void Update()
     {
-        if (timebtwnShots <= 0)
+        if (!isTurret)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (timebtwnShots <= 0)
             {
-                GameObject newBullet = Instantiate(projectile, shotPoint.position, transform.rotation);
-                audioSource.PlayOneShot(shootingClip);
-                newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * speed; 
-                timebtwnShots = Cadenciadedisparo;
-                audioSource.PlayOneShot(reloadClip);
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space) || Input.GetMouseButtonDown(0))
+                {
+                    Shoot(false);
+                }
+            }
+            else
+            {
+                timebtwnShots -= Time.deltaTime;
 
             }
-        }else 
-        {
-            timebtwnShots -= Time.deltaTime;
-                
-        }
-        
+        }        
     }
 
+    private void Shoot(bool isParentTurret)
+    {
+        GameObject newBullet = Instantiate(projectile, shotPoint.position, transform.rotation);
+        newBullet.GetComponent<Projectile>().setParent(isParentTurret);
+        if (!isParentTurret)
+        {
+            audioSource.PlayOneShot(shootingClip);
+        }
+
+        newBullet.GetComponent<Rigidbody2D>().velocity = transform.up * speed;
+        timebtwnShots = Cadenciadedisparo;
+        if (!isParentTurret)
+        {
+            audioSource.PlayOneShot(reloadClip);
+        }
+
+    }
+
+    public void Fire()
+    {
+        if (timebtwnShots <= 0)
+        {
+                Shoot(true);   
+        }
+        else
+        {
+            timebtwnShots -= Time.deltaTime;
+
+        }
+    }
+
+    public void FireBoss(bool isParentTurret, Transform[] shotPoints) {
+        if (timebtwnShots <= 0){
+            foreach (Transform shotPoint in shotPoints) {
+                GameObject newBullet = Instantiate(projectile, shotPoint.position, transform.rotation);
+                newBullet.GetComponent<Projectile>().setParent(isParentTurret);
+                //audioSource.PlayOneShot(shootingClip);
+                newBullet.GetComponent<Rigidbody2D>().velocity = transform.up* speed;
+                timebtwnShots = Cadenciadedisparo;
+                //audioSource.PlayOneShot(reloadClip);
+                }
+        } else { 
+            timebtwnShots -= Time.deltaTime;
+        }
+    }      
+    
 }
 
 

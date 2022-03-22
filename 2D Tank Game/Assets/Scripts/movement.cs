@@ -13,11 +13,13 @@ public class movement : MonoBehaviour
     public float speed;
     bool movefoward;
     bool movereverse;
+    private Transform initialPosition;
+    public GameObject parent;
     [SerializeField] private bool istankcito1;
     // Start is called before the first frame update
     void Start()
     {
-
+        initialPosition = parent.transform;
         moveSpeed = 5f;
         rotationSpeed = 100f;
     }
@@ -59,6 +61,29 @@ public class movement : MonoBehaviour
     {
         transform.Translate(0f, move, 0f);
         transform.Rotate(0f, 0f, rotation);
+    }
+
+
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        Projectile p = col.gameObject.GetComponent<Projectile>();
+        if (p != null)
+        {
+            if (p.getParent())
+            {
+                ResetGame();
+                Destroy(p);
+               
+            }
+
+        }
+
+    }
+
+    private void ResetGame()
+    {
+        parent.transform.position = new Vector3(-8.0f, 0.9f, 15.0f);
     }
 
 

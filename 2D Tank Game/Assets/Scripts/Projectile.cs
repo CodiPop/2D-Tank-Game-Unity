@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
 
     public float lifetime;
+    bool isParentTurret = false;
 
     private void Start()
     {
@@ -14,17 +15,34 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.GetComponent<Turrets>() != null)
+        if (!isParentTurret)
         {
-
-
-
-            Destroy(gameObject);
+            if (col.gameObject.GetComponent<Turrets>() != null)
+            {
+                Destroy(gameObject);
+            }
         }
+        else{ 
+            if (col.gameObject.GetComponent<movement>() != null)
+            {
+                Destroy(gameObject);
+            }
+        }
+        
     }
 
     void Destroyprojectile()
     {
         Destroy(gameObject);
+    }
+
+    public void setParent(bool parent)
+    {
+        isParentTurret = parent;
+    }
+
+    public bool getParent()
+    {
+        return isParentTurret;
     }
 }
